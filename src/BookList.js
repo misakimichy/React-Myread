@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import escapeRegExp from 'escape-string-regexp';
 import * as BooksAPI from './BooksAPI';
 import RenderShelf from './RenderShelf';
 
@@ -18,15 +19,15 @@ class BookList extends Component {
     matchBooks() {
         BooksAPI.getAll().then(books => {
             const currentlyReadingBook = new RegExp(escapeRegExp('currentlyReading'));
-            let currentlyReading = books ? books.filter(book => currentlyReadingBook.test(book, shelf)) : null;
+            const currentlyReading = books ? books.filter(book => currentlyReadingBook.test(book.shelf)) : null;
 
             const wantToReadBook = new RegExp(escapeRegExp('wantToRead'));
-            let wantToRead = books ? books.filter(book => wantToReadBook.test(book, shelf)) : null;
+            const wantToRead = books ? books.filter(book => wantToReadBook.test(book.shelf)) : null;
 
             const ReadBook = new RegExp(escapeRegExp('read'));
-            let read = books ? books.filter(book => ReadBook.test(book, shelf)) : null;
+            const read = books ? books.filter(book => ReadBook.test(book.shelf)) : null;
 
-            this.setState({currentlyReading, wantToRead, read});
+            this.setState({ currentlyReading, wantToRead, read });
         });
     }
 
