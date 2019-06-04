@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
+import RenderShelf from './RenderShelf';
 
 class BookList extends Component {
     state = {
@@ -47,6 +48,7 @@ class BookList extends Component {
                         currentlyReading={currentlyReading}
                         wantToRead={wantToRead}
                         read={read}
+                        handleShelf={this.handleShelf}
                     />
                 </div>
                 <div className='open-search'>
