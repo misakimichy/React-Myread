@@ -9,7 +9,9 @@ class BookList extends Component {
         read: [],
     };
 
-
+    componentDidMount() {
+        this.getBooks();
+    }
 
     // Check the match and update state
     matchBooks() {
@@ -24,24 +26,31 @@ class BookList extends Component {
             let read = books ? books.filter(book => ReadBook.test(book, shelf)) : null;
 
             this.setState({currentlyReading, wantToRead, read});
-        })
+        });
     }
 
-
+    // handle the matchBooks
+    handleShelf(book, shelf) {
+        BooksAPI.update(book, shelf).then(() => this.getBooks());
+    }
     
     render() {
         const {currentlyReading, wantToRead, read } = this.state;
+
         return (
             <div className="list-books">
                 <div className="list-books-title">
                     <h1>My Reads</h1>
                 </div>
                 <div className="list-books-content">
-                    <div>
-                        {/* Invoke three renderShelf and pass each state.
-                        <RenderShelf />
-                        */}
-                    </div>
+                    <RenderShelf
+                        currentlyReading={currentlyReading}
+                        wantToRead={wantToRead}
+                        read={read}
+                    />
+                </div>
+                <div className='open-search'>
+                    <Link to ='/search'>Add book</Link>
                 </div>
             </div>
         );
