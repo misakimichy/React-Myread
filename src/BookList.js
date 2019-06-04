@@ -9,19 +9,38 @@ class BookList extends Component {
         read: [],
     };
 
+
+
+    // Check the match and update state
+    matchBooks() {
+        BooksAPI.getAll().then(books => {
+            const currentlyReadingBook = new RegExp(escapeRegExp('currentlyReading'));
+            let currentlyReading = books ? books.filter(book => currentlyReadingBook.test(book, shelf)) : null;
+
+            const wantToReadBook = new RegExp(escapeRegExp('wantToRead'));
+            let wantToRead = books ? books.filter(book => wantToReadBook.test(book, shelf)) : null;
+
+            const ReadBook = new RegExp(escapeRegExp('read'));
+            let read = books ? books.filter(book => ReadBook.test(book, shelf)) : null;
+
+            this.setState({currentlyReading, wantToRead, read});
+        })
+    }
+
+
+    
     render() {
         const {currentlyReading, wantToRead, read } = this.state;
         return (
             <div className="list-books">
                 <div className="list-books-title">
-                    <h1>MyReads</h1>
+                    <h1>My Reads</h1>
                 </div>
                 <div className="list-books-content">
                     <div>
-                        {/* Pass three state
-                        {}
-                        {}
-                        {} */}
+                        {/* Invoke three renderShelf and pass each state.
+                        <RenderShelf />
+                        */}
                     </div>
                 </div>
             </div>
