@@ -16,6 +16,7 @@ class BookList extends Component {
     }
 
     // Check the match and update state
+    // Research https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
     matchBooks() {
         BooksAPI.getAll().then(books => {
             const currentlyReadingBook = new RegExp(escapeRegExp('currentlyReading'));
@@ -65,9 +66,9 @@ class BookList extends Component {
                 </div>
                 <div className="list-books-content">
                     {/* Invoke three different shelf */}
-                    {this.renderShelf(currentlyReading, 'CurrentlyReading')}
-                    {this.renderShelf(wantToRead, 'wantToRead')}
-                    {this.renderShelf(read, 'read')}
+                    {this.renderShelf(currentlyReading, 'Currently Reading')}
+                    {this.renderShelf(wantToRead, 'Want To Read')}
+                    {this.renderShelf(read, 'Read')}
                 </div>
                 <div className='open-search'>
                     <Link to ='/search'>Add book</Link>
