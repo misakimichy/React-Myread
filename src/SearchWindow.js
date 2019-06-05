@@ -5,7 +5,7 @@ import * as BooksAPI from './BooksAPI';
 class SearchWindow extends Component {
     state = {
         query: '',
-        showBooks: [],
+        books: [],
     };
 
     // Update query
@@ -26,8 +26,6 @@ class SearchWindow extends Component {
     }
 
     render() {
-        const { query, showBooks } = this.state;
-
         return (
             <div className="search-books">
                 <div className="search-books-bar">
