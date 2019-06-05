@@ -67,7 +67,7 @@ class BooksApp extends Component {
           render={() =>
             <BookList
               bookshelf={this.state.bookShelf}
-              updateBookShelf={(book,shelf) => {this.updateBookShelf(book, shelf);}}
+              updateBookShelf={(book, shelf) => {this.updateBookShelf(book, shelf);}}
             />
           }
         />
