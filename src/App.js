@@ -10,7 +10,7 @@ const BooksApp = () => {
   return (
     <div className="app">
       <Route exact path='/' component={BookList}/>
-      <Route path='search' component={SearchWindow} />
+      <Route path='/search' component={SearchWindow} />
     </div>
   );
 }
