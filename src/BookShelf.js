@@ -8,10 +8,10 @@ const BookShelf = ({ title, books, updateBookShelf }) => {
             <h2 className="bookshelf-title">{title}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                    {books.map((books, index) =>
+                    {books.map((book, index) =>
                         <BookListDetail
                             key={index}
-                            books={books}
+                            book={book}
                             updateBookShelf={updateBookShelf}
                         />
                     )}
