@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import escapeRegExp from 'escape-string-regexp';
 import * as BooksAPI from './BooksAPI';
-import RenderShelf from './RenderShelf';
+import BookListDetail from './BookListDetail';
 
 class BookList extends Component {
     state = {
@@ -12,7 +12,7 @@ class BookList extends Component {
     };
 
     componentDidMount() {
-        this.getBooks();
+        this.matchBooks();
     }
 
     // Check the match and update state
@@ -35,6 +35,25 @@ class BookList extends Component {
     handleShelf(book, shelf) {
         BooksAPI.update(book, shelf).then(() => this.getBooks());
     }
+
+    renderShelf (books, title) {
+        return(
+            <div className="bookshelf">
+                <h2 className="bookshelf-title">{title}</h2>
+                <div className="bookshelf-books">
+                    <ol className="books-grid">
+                        {books.map((book, index) =>
+                            <BookListDetail
+                                key={index}
+                                book={book}
+                                handleShelf={this.handleShelf}
+                            />
+                        )}
+                    </ol>
+                </div>
+            </div>
+        );
+    }
     
     render() {
         const {currentlyReading, wantToRead, read } = this.state;
@@ -45,13 +64,10 @@ class BookList extends Component {
                     <h1>My Reads</h1>
                 </div>
                 <div className="list-books-content">
-                    {/* Render three different shelf */}
-                    <RenderShelf
-                        currentlyReading={currentlyReading}
-                        wantToRead={wantToRead}
-                        read={read}
-                        handleShelf={this.handleShelf}
-                    />
+                    {/* Invoke three different shelf */}
+                    {this.renderShelf(currentlyReading, 'CurrentlyReading')}
+                    {this.renderShelf(wantToRead, 'wantToRead')}
+                    {this.renderShelf(read, 'read')}
                 </div>
                 <div className='open-search'>
                     <Link to ='/search'>Add book</Link>
