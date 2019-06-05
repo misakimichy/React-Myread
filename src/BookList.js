@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import escapeRegExp from 'escape-string-regexp';
 import * as BooksAPI from './BooksAPI';
-import BookListDetail from './BookListDetail';
+import BookShelf from './BookShelf';
 
 class BookList extends Component {
     state = {
@@ -36,25 +36,6 @@ class BookList extends Component {
     handleShelf(book, shelf) {
         BooksAPI.update(book, shelf).then(() => this.getBooks());
     }
-
-    renderShelf (books, title) {
-        return(
-            <div className="bookshelf">
-                <h2 className="bookshelf-title">{title}</h2>
-                <div className="bookshelf-books">
-                    <ol className="books-grid">
-                        {books.map((book, index) =>
-                            <BookListDetail
-                                key={index}
-                                book={book}
-                                handleShelf={this.handleShelf}
-                            />
-                        )}
-                    </ol>
-                </div>
-            </div>
-        );
-    }
     
     render() {
         const {currentlyReading, wantToRead, read } = this.state;
@@ -65,10 +46,18 @@ class BookList extends Component {
                     <h1>My Reads</h1>
                 </div>
                 <div className="list-books-content">
-                    {/* Invoke three different shelf */}
-                    {this.renderShelf(currentlyReading, 'Currently Reading')}
-                    {this.renderShelf(wantToRead, 'Want To Read')}
-                    {this.renderShelf(read, 'Read')}
+                    <BookShelf
+                        title={'Currently Reading'}
+                        books={currentlyReading}
+                    />
+                    <BookShelf
+                        title={'Want To Read'}
+                        books={wantToRead}
+                    />
+                    <BookShelf
+                        title={'Read'}
+                        books={read}
+                    />
                 </div>
                 <div className='open-search'>
                     <Link to ='/search'>Add book</Link>
