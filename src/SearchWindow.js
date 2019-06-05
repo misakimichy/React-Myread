@@ -31,8 +31,8 @@ class SearchWindow extends Component {
                         <input 
                             type="text" 
                             placeholder="Search by title or author"
-                            value={this.state.query}
-                            onChange={this.handleQueryUpdate}
+                            value={query}
+                            onChange={event => this.handleQueryUpdate(event.target.value)}
                         />
                     </div>
                 </div>
