@@ -45,6 +45,7 @@ class BookList extends Component {
                     <h1>My Reads</h1>
                 </div>
                 <div className="list-books-content">
+                    {/* Render three different shelf */}
                     <RenderShelf
                         currentlyReading={currentlyReading}
                         wantToRead={wantToRead}
