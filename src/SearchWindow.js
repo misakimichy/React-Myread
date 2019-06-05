@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as BooksAPI from './BooksAPI';
+import PropTypes from 'prop-types';
 
 class SearchWindow extends Component {
     state = {
         query: '',
-        books: [],
     };
 
     // Update query
     handleQueryUpdate = query => {
-        BooksAPI.search(query)
-            .then(books => books ?
-                this.setState({ books })
-                : []);
-                this.setState({ query });
+        this.setState({ query: query });
+        this.props.searchBook(query);
     }
 
-    // Show message when the book is successfully added to the shelf.
-    // 'None' should be selected if a book has not been assigned to a shelf.
-    handleBookShelf(book, shelf) {
-        BooksAPI.update(book, shelf)
-            .then(() => shelf !== 'none' ? alert(`We added ${book.title} to your bookshelf.`) : '')
-            .catch(() => alert('Please try again!'));
+    componentWillMount() {
+        this.props.clearSearchWindow();
     }
 
     render() {
+        const { query } = this.state;
         return (
             <div className="search-books">
                 <div className="search-books-bar">
