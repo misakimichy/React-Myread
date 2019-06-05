@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const BookListDetail = ({ book, handleShelf }) => {
-    const imageThumbnails = book.imageLinks ? book.imageLinks.thumbnail : null;
+const BookListDetail = ({ book, updateBookShelf }) => {
+    const imageThumbnails = book.imageLinks ? book.imageLinks.thumbnail : '';
 
     return (
         <li>
@@ -14,8 +15,8 @@ const BookListDetail = ({ book, handleShelf }) => {
                     </div>
                     <div className="book-shelf-changer">
                         <select
-                            onChange={event => handleShelf(book, event.target.value)}
                             value={book.shelf}
+                            onChange={event => updateBookShelf(book, event.target.value)}
                         >
                             <option value="move" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
@@ -30,6 +31,12 @@ const BookListDetail = ({ book, handleShelf }) => {
             </div>
         </li>
     );
+};
+
+// Add prop-types
+BookListDetail.propTypes = {
+    book: PropTypes.object.isRequired,
+    updateBookShelf: PropTypes.func.isRequired
 };
 
 export default BookListDetail;
