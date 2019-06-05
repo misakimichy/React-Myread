@@ -67,7 +67,7 @@ class BooksApp extends Component {
           render={() =>
             <BookList
               bookshelf={this.state.bookshelf}
-              updateBookShelf={(book,shelf) => {this.updateBookShelf(book, shelf)}}
+              updateBookShelf={(book,shelf) => {this.updateBookShelf(book, shelf);}}
             />
           }
         />
@@ -76,9 +76,9 @@ class BooksApp extends Component {
           render={() =>
             <SearchWindow
               books={this.state.books}
-              searchBook={query => {this.searchBook(query)}}
-              updateBookShelf={(book, shelf) =>{this.updateBookShelf(book, shelf)}}
-              clearSearchWindow={() => {this.clearSearchWindow}}
+              searchBook={query => {this.searchBook(query);}}
+              updateBookShelf={(book, shelf) =>{this.updateBookShelf(book, shelf);}}
+              clearSearchWindow={() => {this.clearSearchWindow();}}
             />
           }
         />
