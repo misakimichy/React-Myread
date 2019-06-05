@@ -1,18 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
 import './App.css';
 import BookList from './BookList';
 import SearchWindow from './SearchWindow';
 
 
-const BooksApp = () => {
-  // Route path '/' for main page and '/search' for search window
-  return (
-    <div className="app">
-      <Route exact path='/' component={BookList}/>
-      <Route path='/search' component={SearchWindow} />
-    </div>
-  );
+class BooksApp extends Component {
+  state = {
+    books: [],
+    bookshelf:[],
+    query: '',
+  }
+
+  // Add API here
+  componentDidMount() {
+    this.getBooks();
+  }
+
+  getBooks = () => {
+    BooksAPI.getAll().then(bookshelf => {
+      this.setState({ bookshelf });
+    });
+  }
+
+
+  render() {
+    // Route path '/' for main page and '/search' for search window
+    return (
+      <div className="app">
+        <Route exact path='/' render={(props) => <BookList />}
+        />
+        <Route path='/search' render={(props) => <SearchWindow />}
+        />
+      </div>
+    );
+  }
 }
 
 export default BooksApp;
