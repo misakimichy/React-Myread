@@ -3,8 +3,16 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BookShelf from './BookShelf';
 
-const BookList = ({ bookshelf, updateBookShelf }) => {
-
+const BookList = ({ bookShelf, updateBookShelf }) => {
+    const currentlyReading = bookShelf.filter(book => {
+        book.shelf === 'Currently Reading'
+    });
+    const wantToRead = bookShelf.filter(book => {
+        book.shelf === 'Want to Read'
+    });
+    const read = bookShelf.filter(book => {
+        book.shelf === 'Read'
+    });
 
     return (
         <div className="list-books">
@@ -15,14 +23,17 @@ const BookList = ({ bookshelf, updateBookShelf }) => {
                 <BookShelf
                     title={'Currently Reading'}
                     books={currentlyReading}
+                    updateBookShelf={updateBookShelf}
                 />
                 <BookShelf
                     title={'Want To Read'}
                     books={wantToRead}
+                    updateBookShelf={updateBookShelf}
                 />
                 <BookShelf
                     title={'Read'}
                     books={read}
+                    updateBookShelf={updateBookShelf}
                 />
             </div>
             <div className='open-search'>
