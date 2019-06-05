@@ -51,4 +51,11 @@ class SearchWindow extends Component {
     }
 }
 
+SearchWindow.propTypes = {
+    books: PropTypes.array.isRequired,
+    searchBook: PropTypes.func.isRequired,
+    updateBookShelf: PropTypes.func.isRequired,
+    clearSearchWindow: PropTypes.func.isRequired
+};
+
 export default SearchWindow;
