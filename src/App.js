@@ -26,7 +26,7 @@ class BooksApp extends Component {
 
   searchBook = query => {
     BooksAPI.search(query, 20).then(books => {
-      if(Array.isArray(books)) 
+      if(!Array.isArray(books))
         books = [];
         const bookShelf = this.state.bookShelf;
         books.map(book => {
