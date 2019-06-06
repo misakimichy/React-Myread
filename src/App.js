@@ -66,7 +66,7 @@ class BooksApp extends Component {
           exact path='/'
           render={() =>
             <BookList
-              bookshelf={this.state.bookShelf}
+              bookShelf={this.state.bookShelf}
               updateBookShelf={(book, shelf) => {this.updateBookShelf(book, shelf);}}
             />
           }
