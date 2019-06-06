@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const BookListDetail = ({ book, updateBookShelf }) => {
-    const imageThumbnails = book.imageLinks ? book.imageLinks.thumbnail : '';
+    
+    // Book-cover background image
+    const imageThumb = book.imageLinks ? book.imageLinks.smallThumbnail : '';
 
     return (
         <li>
@@ -10,7 +12,9 @@ const BookListDetail = ({ book, updateBookShelf }) => {
                 <div className="book-top">
                     <div
                         className="book-cover"
-                        style={{ width: 128, height: 193, backgroundImage: `url(${imageThumbnails})` }}
+                        style={{
+                            backgroundImage: `url(${imageThumb})`
+                        }}
                     >
                     </div>
                     <div className="book-shelf-changer">
