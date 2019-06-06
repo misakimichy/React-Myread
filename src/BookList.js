@@ -45,7 +45,7 @@ const BookList = ({ bookShelf, updateBookShelf }) => {
 
 // Add prop-types
 BookList.propTypes = {
-    bookshelf: PropTypes.array.isRequired,
+    bookShelf: PropTypes.array.isRequired,
     updateBookShelf: PropTypes.func.isRequired
 };
 
