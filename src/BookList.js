@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import BookShelf from './BookShelf';
 
 const BookList = ({ bookShelf, updateBookShelf }) => {
-    const currentlyReading = bookShelf.filter(book => {
+    const currentlyReading = bookShelf.filter(book =>
         book.shelf === 'Currently Reading'
-    });
-    const wantToRead = bookShelf.filter(book => {
+    );
+    const wantToRead = bookShelf.filter(book =>
         book.shelf === 'Want to Read'
-    });
-    const read = bookShelf.filter(book => {
+    );
+    const read = bookShelf.filter(book =>
         book.shelf === 'Read'
-    });
+    );
 
     return (
         <div className="list-books">
@@ -26,7 +26,7 @@ const BookList = ({ bookShelf, updateBookShelf }) => {
                     updateBookShelf={updateBookShelf}
                 />
                 <BookShelf
-                    title={'Want To Read'}
+                    title={'Want to Read'}
                     books={wantToRead}
                     updateBookShelf={updateBookShelf}
                 />
@@ -41,7 +41,7 @@ const BookList = ({ bookShelf, updateBookShelf }) => {
             </div>
         </div>
     );
-}
+};
 
 // Add prop-types
 BookList.propTypes = {
