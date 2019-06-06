@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import BookListDetail from './BookListDetail';
 
 class SearchWindow extends Component {
     state = {
@@ -8,9 +9,9 @@ class SearchWindow extends Component {
     };
 
     // Update query
-    handleQueryUpdate = query => {
-        this.setState({ query: query });
-        this.props.searchBook(query);
+    handleQueryUpdate = currentQuery => {
+        this.setState({ query: currentQuery });
+        this.props.searchBook(currentQuery);
     }
 
     componentWillMount() {
@@ -19,6 +20,7 @@ class SearchWindow extends Component {
 
     render() {
         const { query } = this.state;
+        const { books, updateBookShelf } = this.props;
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -37,7 +39,15 @@ class SearchWindow extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid"></ol>
+                    <ol className="books-grid">
+                        {books.map((book, index) =>
+                            <BookListDetail
+                                key={index}
+                                book={book}
+                                updateBookShelf={updateBookShelf}
+                            />
+                        )}
+                    </ol>
                 </div>
             </div>
         );
