@@ -18,9 +18,26 @@ class SearchWindow extends Component {
         this.props.clearSearchWindow();
     }
 
-    render() {
+    renderSearchResult() {
         const { query } = this.state;
         const { books, updateBookShelf } = this.props;
+        if(query) {
+            return books.error ?
+                <div>No results found.</div>
+                : books.map((book, index) => {
+                    return (
+                        <BookListDetail
+                            key={index}
+                            book={book}
+                            updateBookShelf={updateBookShelf}
+                        />
+                    );
+                });
+            }
+    }
+
+    render() {
+        const { query } = this.state;
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -40,13 +57,7 @@ class SearchWindow extends Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {books.map((book, index) =>
-                            <BookListDetail
-                                key={index}
-                                book={book}
-                                updateBookShelf={updateBookShelf}
-                            />
-                        )}
+                        {this.renderSearchResult()}
                     </ol>
                 </div>
             </div>
