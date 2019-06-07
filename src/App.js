@@ -30,9 +30,12 @@ class BooksApp extends Component {
         const bookShelf = this.state.bookShelf;
         books.map(book => {
           let bookInShelf = bookShelf.find(item => item.id === book.id);
-          if(bookInShelf)
+          if(bookInShelf) {
             book.shelf = bookInShelf.shelf;
             return book;
+          } else {
+            book.shelf = 'none';
+          }
         });
         this.setState({ books: books });
     });
