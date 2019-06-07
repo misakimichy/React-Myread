@@ -19,7 +19,7 @@ class BooksApp extends Component {
 
   getBooks = () => {
     BooksAPI.getAll().then(bookShelf => {
-      this.setState({ bookShelf });
+      this.setState({ bookShelf: bookShelf });
     });
   }
 
@@ -34,7 +34,7 @@ class BooksApp extends Component {
             book.shelf = bookInShelf.shelf;
             return book;
         });
-        this.setState({ books });
+        this.setState({ books: books });
     });
   }
 
