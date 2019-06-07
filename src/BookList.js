@@ -5,13 +5,15 @@ import BookShelf from './BookShelf';
 
 const BookList = ({ bookShelf, updateBookShelf }) => {
     const currentlyReading = bookShelf.filter(book =>
-        book.shelf === 'Currently Reading'
+        // Debugging .filter method
+        console.log(book.shelf, book.shelf === 'Currently Reading') ||
+        book.shelf === 'currentlyReading'
     );
     const wantToRead = bookShelf.filter(book =>
-        book.shelf === 'Want to Read'
+        book.shelf === 'wantToRead'
     );
     const read = bookShelf.filter(book =>
-        book.shelf === 'Read'
+        book.shelf === 'read'
     );
 
     return (
