@@ -9,9 +9,9 @@ class SearchWindow extends Component {
     };
 
     // Update query
-    handleQueryUpdate = currentQuery => {
-        this.setState({ query: currentQuery });
-        this.props.searchBook(currentQuery);
+    handleQueryUpdate = query => {
+        this.setState({ query: query });
+        this.props.searchBook(query);
     }
 
     componentWillMount() {
