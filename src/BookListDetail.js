@@ -35,7 +35,10 @@ const BookListDetail = ({ book, updateBookShelf }) => {
                     </div>
                 </div>
                 <div className="book-title">{book.title}</div>
-                <div className="book-authors">{book.authors}</div>
+                {/* Separate author name with comma */}
+                <div className="book-authors">
+                    {Array.isArray(book.authors) ? book.authors.join(', ') : ''}
+                </div>
             </div>
         </li>
     );
