@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const BookListDetail = ({ book, updateBookShelf }) => {
-    
+    // Default image for book-cover 
+    const defaultImage='http://via.placeholder.com/128x193?text=No%20Cover';
     // Book-cover background image
-    const imageThumb = (book.imageLinks && book.imageLinks.smallThumbnail) || '';
+    const imageThumb = (book.imageLinks && book.imageLinks.smallThumbnail) || defaultImage;
 
     return (
         <li>
