@@ -10,7 +10,6 @@ class BooksApp extends Component {
   state = {
     books: [],
     bookShelf:[],
-    query: '',
   }
 
   // Add API here
@@ -35,7 +34,7 @@ class BooksApp extends Component {
             book.shelf = bookInShelf.shelf;
             return book;
         });
-        this.setState({ books, query });
+        this.setState({ books });
     });
   }
 
