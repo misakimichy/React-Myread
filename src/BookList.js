@@ -6,7 +6,7 @@ import BookShelf from './BookShelf';
 const BookList = ({ bookShelf, updateBookShelf }) => {
     const currentlyReading = bookShelf.filter(book =>
         // Debugging .filter method
-        console.log(book.shelf, book.shelf === 'Currently Reading') ||
+        // console.log(book.shelf, book.shelf === 'Currently Reading') ||
         book.shelf === 'currentlyReading'
     );
     const wantToRead = bookShelf.filter(book =>
