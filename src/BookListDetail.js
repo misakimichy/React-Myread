@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const BookListDetail = ({ book, updateBookShelf }) => {
     
     // Book-cover background image
-    const imageThumb = book.imageLinks ? book.imageLinks.smallThumbnail : '';
+    const imageThumb = (book.imageLinks && book.imageLinks.smallThumbnail) || '';
 
     return (
         <li>
@@ -17,6 +17,7 @@ const BookListDetail = ({ book, updateBookShelf }) => {
                         }}
                     >
                     </div>
+                    {/* Chore: Should I make another component? */}
                     <div className="book-shelf-changer">
                         <select
                             value={book.shelf}
