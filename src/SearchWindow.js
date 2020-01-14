@@ -22,8 +22,8 @@ class SearchWindow extends Component {
         const { query } = this.state;
         const { books, updateBookShelf } = this.props;
         if(query) {
-            return books.error ?
-                <div>No results found.</div>
+            return books.length === 0 ?
+                <div>No results found</div>
                 : books.map((book, index) => {
                     return (
                         <BookListDetail
