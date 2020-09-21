@@ -3,29 +3,25 @@ import PropTypes from 'prop-types';
 import BookListDetail from './BookListDetail';
 
 const BookShelf = ({ title, books, updateBookShelf }) => {
-    return(
-        <div className="bookshelf">
-            <h2 className="bookshelf-title">{title}</h2>
-            <div className="bookshelf-books">
-                <ol className="books-grid">
-                    {books.map((book, index) =>
-                        <BookListDetail
-                            key={index}
-                            book={book}
-                            updateBookShelf={updateBookShelf}
-                        />
-                    )}
-                </ol>
-            </div>
-        </div>
-    );
+  return (
+    <div className="bookshelf">
+      <h2 className="bookshelf-title">{title}</h2>
+      <div className="bookshelf-books">
+        <ol className="books-grid">
+          {books.map((book, index) => (
+            <BookListDetail key={index} book={book} updateBookShelf={updateBookShelf} />
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
 };
 
 // Add prop-types
 BookShelf.propTypes = {
-    title: PropTypes.string.isRequired,
-    books: PropTypes.array.isRequired,
-    updateBookShelf: PropTypes.func.isRequired
+  title: PropTypes.string.isRequired,
+  books: PropTypes.array.isRequired,
+  updateBookShelf: PropTypes.func.isRequired,
 };
 
 export default BookShelf;

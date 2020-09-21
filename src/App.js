@@ -5,12 +5,11 @@ import './App.css';
 import BookList from './BookList';
 import SearchWindow from './SearchWindow';
 
-
 class BooksApp extends Component {
   state = {
     books: [],
-    bookShelf:[],
-  }
+    bookShelf: [],
+  };
 
   // Add API here
   componentDidMount() {
@@ -18,45 +17,44 @@ class BooksApp extends Component {
   }
 
   getBooks = () => {
-    BooksAPI.getAll().then(bookShelf => {
+    BooksAPI.getAll().then((bookShelf) => {
       this.setState({ bookShelf: bookShelf });
     });
-  }
+  };
 
-  searchBook = query => {
-    BooksAPI.search(query).then(books => {
-      if(!Array.isArray(books))
-        books = [];
-        const bookShelf = this.state.bookShelf;
-        books.map(book => {
-          let bookInShelf = bookShelf.find(item => item.id === book.id);
-          if(bookInShelf) {
-            book.shelf = bookInShelf.shelf;
-            return book;
-          } else {
-            book.shelf = 'none';
-          }
-        });
-        this.setState({ books: books });
+  searchBook = (query) => {
+    BooksAPI.search(query).then((books) => {
+      if (!Array.isArray(books)) books = [];
+      const bookShelf = this.state.bookShelf;
+      books.map((book) => {
+        let bookInShelf = bookShelf.find((item) => item.id === book.id);
+        if (bookInShelf) {
+          book.shelf = bookInShelf.shelf;
+          return book;
+        } else {
+          book.shelf = 'none';
+        }
+      });
+      this.setState({ books: books });
     });
-  }
+  };
 
   updateBookShelf = (book, shelf) => {
-    if(book.shelf !== shelf) {
-      BooksAPI.update(book, shelf).then(response => {
+    if (book.shelf !== shelf) {
+      BooksAPI.update(book, shelf).then((response) => {
         book.shelf = shelf;
         this.getBooks();
-        this.setState(state => ({
-          books: state.books.filter(thisBook => thisBook.id !== book.id).concat([book])
+        this.setState((state) => ({
+          books: state.books.filter((thisBook) => thisBook.id !== book.id).concat([book]),
         }));
       });
     }
-  }
+  };
 
   // Clear the search bar
   clearSearchWindow = () => {
     this.setState({ book: [] });
-  }
+  };
 
   render() {
     // Route path '/' for main page and '/search' for search window
@@ -65,24 +63,33 @@ class BooksApp extends Component {
     return (
       <div className="app">
         <Route
-          exact path='/'
-          render={() =>
+          exact
+          path="/"
+          render={() => (
             <BookList
               bookShelf={this.state.bookShelf}
-              updateBookShelf={(book, shelf) => {this.updateBookShelf(book, shelf);}}
+              updateBookShelf={(book, shelf) => {
+                this.updateBookShelf(book, shelf);
+              }}
             />
-          }
+          )}
         />
         <Route
-          path='/search'
-          render={() =>
+          path="/search"
+          render={() => (
             <SearchWindow
               books={this.state.books}
-              searchBook={query => {this.searchBook(query);}}
-              updateBookShelf={(book, shelf) =>{this.updateBookShelf(book, shelf);}}
-              clearSearchWindow={() => {this.clearSearchWindow();}}
+              searchBook={(query) => {
+                this.searchBook(query);
+              }}
+              updateBookShelf={(book, shelf) => {
+                this.updateBookShelf(book, shelf);
+              }}
+              clearSearchWindow={() => {
+                this.clearSearchWindow();
+              }}
             />
-          }
+          )}
         />
       </div>
     );
