@@ -50,7 +50,7 @@ class SearchWindow extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid">{this.renderSearchResult()}</ol>
+          <ol className="books-container">{this.renderSearchResult()}</ol>
         </div>
       </div>
     );

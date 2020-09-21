@@ -65,7 +65,7 @@ class BooksApp extends Component {
     // Pass props to a component rendered by React Router:
     // https://tylermcginnis.com/react-router-pass-props-to-components/
     return (
-      <Styles className="app">
+      <Styles>
         <Route
           exact
           path="/"
@@ -102,4 +102,6 @@ class BooksApp extends Component {
 
 export default BooksApp;
 
-const Styles = styled.div``;
+const Styles = styled.div`
+  padding: 0 40px;
+`;

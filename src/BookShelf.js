@@ -5,20 +5,16 @@ import styled from 'styled-components';
 // component
 import BookListDetail from './BookListDetail';
 
-const BookShelf = ({ title, books, updateBookShelf }) => {
-  return (
-    <Styles className="bookshelf">
-      <h2 className="bookshelf-title">{title}</h2>
-      <div className="bookshelf-books">
-        <ol className="books-grid">
-          {books.map((book, index) => (
-            <BookListDetail key={index} book={book} updateBookShelf={updateBookShelf} />
-          ))}
-        </ol>
-      </div>
-    </Styles>
-  );
-};
+const BookShelf = ({ title, books, updateBookShelf }) => (
+  <Styles>
+    <h2>{title}</h2>
+    <div className="books-container">
+      {books.map(book => (
+        <BookListDetail key={book.title} book={book} updateBookShelf={updateBookShelf} />
+      ))}
+    </div>
+  </Styles>
+);
 
 // Add prop-types
 BookShelf.propTypes = {
