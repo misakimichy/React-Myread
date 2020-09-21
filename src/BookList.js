@@ -18,18 +18,15 @@ const BookList = ({ bookShelf, updateBookShelf }) => {
 
   return (
     <Styles className="list-books">
-      <div className="list-books-title">
-        <h1>My Reads</h1>
-      </div>
-      <div className="list-books-content">
-        <BookShelf
-          title={'Currently Reading'}
-          books={currentlyReading}
-          updateBookShelf={updateBookShelf}
-        />
-        <BookShelf title={'Want to Read'} books={wantToRead} updateBookShelf={updateBookShelf} />
-        <BookShelf title={'Read'} books={read} updateBookShelf={updateBookShelf} />
-      </div>
+      <h1>My bookshelf</h1>
+      <BookShelf
+        title='Currently Reading'
+        books={currentlyReading}
+        updateBookShelf={updateBookShelf}
+      />
+      <BookShelf title='Want to Read' books={wantToRead} updateBookShelf={updateBookShelf} />
+      <BookShelf title='Read' books={read} updateBookShelf={updateBookShelf} />
+
       <div className="open-search">
         <Link to="/search">Add book</Link>
       </div>
