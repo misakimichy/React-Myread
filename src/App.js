@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import * as BooksAPI from './BooksAPI';
-import './App.css';
+import styled from 'styled-components';
+
+// components
 import BookList from './BookList';
 import SearchWindow from './SearchWindow';
+
+// util
+import * as BooksAPI from './BooksAPI';
 
 class BooksApp extends Component {
   state = {
@@ -61,7 +65,7 @@ class BooksApp extends Component {
     // Pass props to a component rendered by React Router:
     // https://tylermcginnis.com/react-router-pass-props-to-components/
     return (
-      <div className="app">
+      <Styles className="app">
         <Route
           exact
           path="/"
@@ -91,9 +95,11 @@ class BooksApp extends Component {
             />
           )}
         />
-      </div>
+      </Styles>
     );
   }
 }
 
 export default BooksApp;
+
+const Styles = styled.div``;

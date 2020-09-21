@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+// components
 import BookShelf from './BookShelf';
 
 const BookList = ({ bookShelf, updateBookShelf }) => {
@@ -14,7 +17,7 @@ const BookList = ({ bookShelf, updateBookShelf }) => {
   const read = bookShelf.filter((book) => book.shelf === 'read');
 
   return (
-    <div className="list-books">
+    <Styles className="list-books">
       <div className="list-books-title">
         <h1>My Reads</h1>
       </div>
@@ -30,7 +33,7 @@ const BookList = ({ bookShelf, updateBookShelf }) => {
       <div className="open-search">
         <Link to="/search">Add book</Link>
       </div>
-    </div>
+    </Styles>
   );
 };
 
@@ -41,3 +44,5 @@ BookList.propTypes = {
 };
 
 export default BookList;
+
+const Styles = styled.div``;

@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+// component
 import BookListDetail from './BookListDetail';
 
 const BookShelf = ({ title, books, updateBookShelf }) => {
   return (
-    <div className="bookshelf">
+    <Styles className="bookshelf">
       <h2 className="bookshelf-title">{title}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
@@ -13,7 +16,7 @@ const BookShelf = ({ title, books, updateBookShelf }) => {
           ))}
         </ol>
       </div>
-    </div>
+    </Styles>
   );
 };
 
@@ -25,3 +28,5 @@ BookShelf.propTypes = {
 };
 
 export default BookShelf;
+
+const Styles = styled.div``;

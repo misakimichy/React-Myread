@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const BookListDetail = ({ book, updateBookShelf }) => {
   // Default image for book-cover
@@ -8,7 +9,7 @@ const BookListDetail = ({ book, updateBookShelf }) => {
   const imageThumb = (book.imageLinks && book.imageLinks.smallThumbnail) || defaultImage;
 
   return (
-    <li>
+    <Styles>
       <div className="book">
         <div className="book-top">
           <div
@@ -41,7 +42,7 @@ const BookListDetail = ({ book, updateBookShelf }) => {
           {Array.isArray(book.authors) ? book.authors.join(', ') : ''}
         </div>
       </div>
-    </li>
+    </Styles>
   );
 };
 
@@ -52,3 +53,5 @@ BookListDetail.propTypes = {
 };
 
 export default BookListDetail;
+
+const Styles = styled.li``;
