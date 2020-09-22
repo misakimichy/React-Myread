@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import BookMenu from './BookMenu';
 
-import { colors } from './styles/Theme';
+import { colors } from '../styles/Theme';
 
 const BookListDetail = ({ book, updateBookShelf }) => {
   const { title, subtitle, authors, shelf, imageLinks, previewLink, categories, description } = book;

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 // components
 import BookShelf from './BookShelf';
 
-import { colors } from './styles/Theme';
+import { colors } from '../styles/Theme';
 
 const BookList = ({ bookShelf, updateBookShelf }) => {
   const currentlyReading = bookShelf.filter(

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 // theme
-import { colors } from './styles/Theme';
+import { colors } from '../styles/Theme';
 
 const BookMenu = ({ value, updateBookShelf, book }) => (
   <Styles

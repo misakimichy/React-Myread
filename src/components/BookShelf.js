@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // component
 import BookListDetail from './BookListDetail';
 
-import { colors } from './styles/Theme';
+import { colors } from '../styles/Theme';
 
 const BookShelf = ({ title, books, updateBookShelf }) => (
   <Styles>

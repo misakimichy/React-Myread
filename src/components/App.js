@@ -7,7 +7,7 @@ import BookList from './BookList';
 import SearchWindow from './SearchWindow';
 
 // util
-import * as BooksAPI from './BooksAPI';
+import * as BooksAPI from '../BooksAPI';
 
 class BooksApp extends Component {
   state = {

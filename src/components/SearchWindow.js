@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+
+// components
 import BookListDetail from './BookListDetail';
 
 class SearchWindow extends Component {
