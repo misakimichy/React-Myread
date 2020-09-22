@@ -1,30 +1,27 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 // components
 import BookListDetail from './BookListDetail';
 
-class SearchWindow extends Component {
-  state = {
-    query: '',
-  };
+// icons
+import CloseIcon from '../icons/CloseIcon.js';
+
+// theme
+import { colors } from '../styles/Theme';
+
+const SearchWindow = ({ books, searchBook, updateBookShelf }) => {
+  const [searchData, setSearchData] = useState('');
 
   // Update query
-  handleQueryUpdate = (query) => {
-    this.setState({ query: query });
-    this.props.searchBook(query);
+  const handleQueryUpdate = (value) => {
+    setSearchData(value);
+    searchBook(value);
   };
 
-  componentWillMount() {
-    this.props.clearSearchWindow();
-  }
-
-  renderSearchResult() {
-    const { query } = this.state;
-    const { books, updateBookShelf } = this.props;
-    if (query) {
+  const renderSearchResult = () => {
+    if (searchData) {
       return books.length === 0 ? (
         <div>No results found</div>
       ) : (
@@ -35,38 +32,56 @@ class SearchWindow extends Component {
     }
   }
 
-  render() {
-    const { query } = this.state;
-    return (
-      <Styles className="search-books">
-        <div className="search-books-bar">
-          <Link to="/" className="close-search">
-            Close
-          </Link>
-          <div className="search-books-input-wrapper">
-            <input
-              type="text"
-              placeholder="Search by title or author"
-              value={query}
-              onChange={(event) => this.handleQueryUpdate(event.target.value)}
-            />
-          </div>
-        </div>
-        <div className="search-books-results">
-          <ol className="books-container">{this.renderSearchResult()}</ol>
-        </div>
-      </Styles>
-    );
-  }
+  return (
+    <Styles>
+      <div className="search-books-bar">
+        <Link to="/" className="close-search">
+          <CloseIcon />
+        </Link>
+        <input
+          type="text"
+          placeholder="Search by title or author"
+          value={searchData}
+          onChange={e => handleQueryUpdate(e.target.value)}
+        />
+      </div>
+      <div className="search-books-results">
+        <ol className="books-container">{renderSearchResult()}</ol>
+      </div>
+    </Styles>
+  );
 }
-
-SearchWindow.propTypes = {
-  books: PropTypes.array.isRequired,
-  searchBook: PropTypes.func.isRequired,
-  updateBookShelf: PropTypes.func.isRequired,
-  clearSearchWindow: PropTypes.func.isRequired,
-};
 
 export default SearchWindow;
 
-const Styles = styled.div``;
+const Styles = styled.div`
+  .search-books-bar {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
+    width: 100%;
+    z-index: 5;
+
+    a {
+      padding: 15px;
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: ${colors.navy};
+      }
+    }
+
+    input {
+      width: 100%;
+      font-size: 1.25em;
+      border: none;
+      outline: none;
+
+      padding: 15px 10px;
+    }
+  }
+
+`;

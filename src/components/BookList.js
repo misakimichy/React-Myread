@@ -7,20 +7,19 @@ import styled from 'styled-components';
 import BookShelf from './BookShelf';
 
 import { colors } from '../styles/Theme';
+import AddIcon from '../icons/AddIcon.js'
 
 const BookList = ({ bookShelf, updateBookShelf }) => {
-  const currentlyReading = bookShelf.filter(
-    (book) =>
-      // Debugging .filter method
-      // console.log(book.shelf, book.shelf === 'Currently Reading') ||
-      book.shelf === 'currentlyReading'
-  );
-  const wantToRead = bookShelf.filter((book) => book.shelf === 'wantToRead');
-  const read = bookShelf.filter((book) => book.shelf === 'read');
+  const currentlyReading = bookShelf.filter(book => book.shelf === 'currentlyReading');
+  const wantToRead = bookShelf.filter(book => book.shelf === 'wantToRead');
+  const read = bookShelf.filter(book => book.shelf === 'read');
 
   return (
     <Styles className="list-books">
       <h1>My bookshelf</h1>
+      <Link to="/search" className='search'>
+        <AddIcon />
+      </Link>
       <BookShelf
         title='Currently Reading'
         books={currentlyReading}
@@ -28,11 +27,6 @@ const BookList = ({ bookShelf, updateBookShelf }) => {
       />
       <BookShelf title='Want to Read' books={wantToRead} updateBookShelf={updateBookShelf} />
       <BookShelf title='Read' books={read} updateBookShelf={updateBookShelf} />
-
-
-      <Link to="/search" className='search'>
-        <button className="open-search" />
-      </Link>
     </Styles>
   );
 };
@@ -51,23 +45,24 @@ const Styles = styled.div`
   .search {
     position: fixed;
     right: 25px;
-    bottom: 25px;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    display: block;
     border-radius: 50%;
     box-shadow: ${colors.boxShadow};
-    background: ${colors.navy} url('./icons/add.svg') no-repeat center;
-    background-size: 28px;
 
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     outline: 0;
+    z-index: 1;
     
-    .open-search {
-      border: 1px solid ${colors.navy};
-      border-radius: 50%;
-      width: 100%;
-      height: 100%;
+    svg {
+      width: 35px;
+      height: 35px;
+
+      fill: ${colors.navy};
 
       cursor: pointer;
     }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -12,7 +12,6 @@ import * as BooksAPI from '../BooksAPI';
 const BooksApp = () => {
   const [books, setBooks ] = useState([]);
   const [bookShelf, setBookShelf] = useState([]);
-
 
   // Add data from booksAPI
   const getBooks = () => {
@@ -44,7 +43,9 @@ const BooksApp = () => {
       BooksAPI.update(book, shelf).then((response) => {
         book.shelf = shelf;
         getBooks();
-        setBooks(books.filter((thisBook) => thisBook.id !== book.id).concat([book]));
+        setBooks({
+          books: books.filter((thisBook) => thisBook.id !== book.id).concat([book]),
+        });
       });
     }
   };
@@ -64,9 +65,7 @@ const BooksApp = () => {
         render={() => (
           <BookList
             bookShelf={bookShelf}
-            updateBookShelf={(book, shelf) => {
-              updateBookShelf(book, shelf);
-            }}
+            updateBookShelf={updateBookShelf}
           />
         )}
       />
@@ -75,9 +74,8 @@ const BooksApp = () => {
         render={() => (
           <SearchWindow
             books={books}
-            searchBook={(query) => {searchBook(query)}}
-            updateBookShelf={(book, shelf) => {updateBookShelf(book, shelf)}}
-            clearSearchWindow={setBooks}
+            searchBook={searchBook}
+            updateBookShelf={updateBookShelf}
           />
         )}
       />
