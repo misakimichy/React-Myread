@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import BookListDetail from './BookListDetail';
 
@@ -35,7 +36,7 @@ class SearchWindow extends Component {
   render() {
     const { query } = this.state;
     return (
-      <div className="search-books">
+      <Styles className="search-books">
         <div className="search-books-bar">
           <Link to="/" className="close-search">
             Close
@@ -52,7 +53,7 @@ class SearchWindow extends Component {
         <div className="search-books-results">
           <ol className="books-container">{this.renderSearchResult()}</ol>
         </div>
-      </div>
+      </Styles>
     );
   }
 }
@@ -65,3 +66,5 @@ SearchWindow.propTypes = {
 };
 
 export default SearchWindow;
+
+const Styles = styled.div``;

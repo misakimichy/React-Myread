@@ -5,6 +5,8 @@ import styled from 'styled-components';
 // component
 import BookListDetail from './BookListDetail';
 
+import { colors } from './styles/Theme';
+
 const BookShelf = ({ title, books, updateBookShelf }) => (
   <Styles>
     <h2>{title}</h2>
@@ -25,4 +27,8 @@ BookShelf.propTypes = {
 
 export default BookShelf;
 
-const Styles = styled.div``;
+const Styles = styled.div`
+  h2 {
+    border-bottom: 1px solid ${colors.navy};
+  }
+`;

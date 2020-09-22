@@ -23,7 +23,7 @@ export default BookMenu;
 
 const Styles = styled.select`
   position: absolute;
-  right: 20px;
+  right: 0;
   bottom: 10px;
 
   color: ${colors.white};

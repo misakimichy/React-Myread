@@ -71,6 +71,11 @@ const Styles = styled.div`
       margin: 0;
       color: ${colors.darkGrey};
     }
+
+    .book-authors {
+      font-size: 0.9em;
+      color: ${colors.lightGrey};
+    }
   }
 
   .category, .description {

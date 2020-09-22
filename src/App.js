@@ -22,7 +22,7 @@ class BooksApp extends Component {
 
   getBooks = () => {
     BooksAPI.getAll().then((bookShelf) => {
-      this.setState({ bookShelf: bookShelf });
+      this.setState({ bookShelf });
     });
   };
 
@@ -64,14 +64,15 @@ class BooksApp extends Component {
     // Route path '/' for main page and '/search' for search window
     // Pass props to a component rendered by React Router:
     // https://tylermcginnis.com/react-router-pass-props-to-components/
+    const { bookShelf, books } = this.state;
+
     return (
       <Styles>
-        <Route
-          exact
+        <Route exact
           path="/"
           render={() => (
             <BookList
-              bookShelf={this.state.bookShelf}
+              bookShelf={bookShelf}
               updateBookShelf={(book, shelf) => {
                 this.updateBookShelf(book, shelf);
               }}
@@ -82,7 +83,7 @@ class BooksApp extends Component {
           path="/search"
           render={() => (
             <SearchWindow
-              books={this.state.books}
+              books={books}
               searchBook={(query) => {
                 this.searchBook(query);
               }}
