@@ -8,20 +8,17 @@ import { colors } from './styles/Theme';
 
 const BookListDetail = ({ book, updateBookShelf }) => {
   const { title, subtitle, authors, shelf, imageLinks, previewLink, categories, description } = book;
-  console.log(book)
+  const [ truncateDescription, setTruncateDescription ] = useState(description);
 
   // Default image for book-cover
   const defaultImage = 'http://via.placeholder.com/128x193?text=No%20Cover';
-
-  const [ truncateDescription, setTruncateDescription ] = useState(description);
   
   useEffect(() => {
-    const truncateText = (text, length) => 
+    const truncateText = (text, length) =>
       text.length > length ? setTruncateDescription(text.substring(0, length) + '...') : text;
     
-    if (truncateDescription.length > 150) truncateText(truncateDescription, 150);
-    
-  })
+    if (truncateDescription !== undefined && truncateDescription.length > 150) truncateText(truncateDescription, 150);
+  }, [truncateDescription]);
   
   return (
     <Styles>
@@ -35,7 +32,7 @@ const BookListDetail = ({ book, updateBookShelf }) => {
           </div>
         </a>
         {categories && <div className="category">{categories}</div>}
-        <p className="description">{truncateDescription}</p>
+        {description !== undefined && <p className="description">{truncateDescription}</p>}
       </div>
   
       <BookMenu updateBookShelf={updateBookShelf} value={shelf} book={book} />
