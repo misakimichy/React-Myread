@@ -11,7 +11,7 @@ const BookListDetail = ({ book, setBooks, books }) => {
 
   // Default image for book-cover
   const defaultImage = 'http://via.placeholder.com/128x193?text=No%20Cover';
-  
+
   useEffect(() => {
     const truncateText = (text, length) =>
       text.length > length ? setTruncateDescription(text.substring(0, length) + '...') : text;
@@ -21,7 +21,7 @@ const BookListDetail = ({ book, setBooks, books }) => {
   
   return (
     <Styles>
-      <img src={imageLinks.thumbnail  || defaultImage} alt={`thumbnail of ${title}`}/>
+      <img src={imageLinks ? imageLinks.thumbnail : defaultImage} alt={`thumbnail of ${title}`}/>
       <BookMenu
         book={book}
         setBooks={setBooks}
