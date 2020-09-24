@@ -9,7 +9,7 @@ import BookShelf from './BookShelf';
 import { colors } from '../styles/Theme';
 import AddIcon from '../icons/AddIcon.js'
 
-const BookList = ({ bookShelf, updateBookShelf }) => {
+const BookList = ({ bookShelf, setBooks, books }) => {
   const currentlyReading = bookShelf.filter(book => book.shelf === 'currentlyReading');
   const wantToRead = bookShelf.filter(book => book.shelf === 'wantToRead');
   const read = bookShelf.filter(book => book.shelf === 'read');
@@ -23,18 +23,20 @@ const BookList = ({ bookShelf, updateBookShelf }) => {
       <BookShelf
         title='Currently Reading'
         books={currentlyReading}
-        updateBookShelf={updateBookShelf}
+        setBooks={setBooks}
       />
-      <BookShelf title='Want to Read' books={wantToRead} updateBookShelf={updateBookShelf} />
-      <BookShelf title='Read' books={read} updateBookShelf={updateBookShelf} />
+      <BookShelf
+        title='Want to Read'
+        books={wantToRead}
+        setBooks={setBooks}
+      />
+      <BookShelf
+        title='Read'
+        books={read}
+        setBooks={setBooks}
+      />
     </Styles>
   );
-};
-
-// Add prop-types
-BookList.propTypes = {
-  bookShelf: PropTypes.array.isRequired,
-  updateBookShelf: PropTypes.func.isRequired,
 };
 
 export default BookList;

@@ -38,23 +38,6 @@ const BooksApp = () => {
     });
   };
 
-  const updateBookShelf = (book, shelf) => {
-    if (book.shelf !== shelf) {
-      BooksAPI.update(book, shelf).then((response) => {
-        book.shelf = shelf;
-        getBooks();
-        setBooks({
-          books: books.filter((thisBook) => thisBook.id !== book.id).concat([book]),
-        });
-      });
-    }
-  };
-
-  // Clear the search bar
-  // const clearSearchWindow = () => {
-  //   setBooks([]);
-  // };
-
   // Route path '/' for main page and '/search' for search window
   // Pass props to a component rendered by React Router:
   // https://tylermcginnis.com/react-router-pass-props-to-components/
@@ -65,7 +48,8 @@ const BooksApp = () => {
         render={() => (
           <BookList
             bookShelf={bookShelf}
-            updateBookShelf={updateBookShelf}
+            setBooks={setBooks}
+            books={books}
           />
         )}
       />
@@ -75,7 +59,7 @@ const BooksApp = () => {
           <SearchWindow
             books={books}
             searchBook={searchBook}
-            updateBookShelf={updateBookShelf}
+            setBooks={setBooks}
           />
         )}
       />

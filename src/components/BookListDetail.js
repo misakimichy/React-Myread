@@ -23,6 +23,11 @@ const BookListDetail = ({ book, updateBookShelf }) => {
   return (
     <Styles>
       <img src={imageLinks.thumbnail  || defaultImage} alt={`thumbnail of ${title}`}/>
+      <BookMenu
+        book={book}
+        setBooks={setBooks}
+        books={books}
+      />
       <div>
         <a href={previewLink} target='__blank'>
           <h3>{title}</h3>

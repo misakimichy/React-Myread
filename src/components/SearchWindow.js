@@ -11,7 +11,7 @@ import CloseIcon from '../icons/CloseIcon.js';
 // theme
 import { colors } from '../styles/Theme';
 
-const SearchWindow = ({ books, searchBook, updateBookShelf }) => {
+const SearchWindow = ({ books, searchBook, setBooks}) => {
   const [searchData, setSearchData] = useState('');
 
   // Update query
@@ -25,13 +25,13 @@ const SearchWindow = ({ books, searchBook, updateBookShelf }) => {
       return books.length === 0 ? (
         <div>No results found</div>
       ) : (
-        books.map((book, index) => {
-          return <BookListDetail key={index} book={book} updateBookShelf={updateBookShelf} />;
+        books.map(book => {
+          return <BookListDetail key={book.id} book={book} books={books} setBooks={setBooks} />;
         })
       );
     }
   }
-
+  
   return (
     <Styles>
       <div className="search-books-bar">
@@ -45,8 +45,8 @@ const SearchWindow = ({ books, searchBook, updateBookShelf }) => {
           onChange={e => handleQueryUpdate(e.target.value)}
         />
       </div>
-      <div className="search-books-results">
-        <ol className="books-container">{renderSearchResult()}</ol>
+      <div className="books-container" style={{marginTop: '70px'}}>
+        {renderSearchResult()}
       </div>
     </Styles>
   );
