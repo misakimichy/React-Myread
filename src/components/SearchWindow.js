@@ -63,7 +63,6 @@ const Styles = styled.div`
     left: 0;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
     width: 100%;
-    z-index: 5;
 
     a {
       padding: 15px;
@@ -82,6 +81,9 @@ const Styles = styled.div`
 
       padding: 15px 10px;
     }
-  }
 
+    .books-container {
+      margin-top: 57px;
+    }
+  }
 `;

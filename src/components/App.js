@@ -24,7 +24,8 @@ const BooksApp = () => {
 
   const searchBook = (query) => {
     BooksAPI.search(query).then((books) => {
-      if (!Array.isArray(books)) books = [];
+      if (!Array.isArray(books)) return setBooks([]);
+
       books.map((book) => {
         let thisBookInShelf = bookShelf.find((item) => item.id === book.id);
         if (thisBookInShelf) {

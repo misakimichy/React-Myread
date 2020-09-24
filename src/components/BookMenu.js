@@ -1,37 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 // theme
 import { colors } from '../styles/Theme';
+import ArrowDropdown from '../icons/ArrowDropdown';
 
-const BookMenu = ({ value, updateBookShelf, book }) => (
-  <Styles
-    value={value}
-    onChange={(e) => updateBookShelf(book, e.target.value)}
-  >
-    <option value="move" disabled>
-      Move to...
-    </option>
-    <option value="currentlyReading">Currently Reading</option>
-    <option value="wantToRead">Want to Read</option>
-    <option value="read">Read</option>
-    <option value="remove">Remove</option>
-  </Styles>
-)
+// util
+import * as BooksAPI from '../BooksAPI';
+
+const BookMenu = ({ book, setBooks, books }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const updateBookShelf = (book, status) => {
+    if (book.shelf !== status) {
+      BooksAPI.update(book, status).then((response) => {
+        book.shelf = status;
+
+        setBooks(books.filter((thisBook) => thisBook.id !== book.id).concat([book]));
+        setIsOpen(false);
+      });
+    }
+  };
+
+  return (
+    <Styles onClick={() => setIsOpen(!isOpen)}>
+      <ArrowDropdown />
+      {isOpen && 
+        <div className="book-menu-wrapper">
+          <button value="currentlyReading" onClick={(e) => updateBookShelf(book, e.target.value)}>
+            Currently Reading
+          </button>
+          <button value="wantToRead" onClick={(e) => updateBookShelf(book, e.target.value)}>
+            Want to Read
+          </button>
+          <button value="read" onClick={(e) => updateBookShelf(book, e.target.value)}>
+            Read
+          </button>
+          {window.location.pathname === '/' &&
+            <button value="remove" onClick={(e) => updateBookShelf(book, e.target.value)}>
+              Remove
+            </button>
+          }
+        </div>
+      }
+    </Styles>
+  );
+};
 
 export default BookMenu;
 
-const Styles = styled.select`
+const Styles = styled.div`
   position: absolute;
-  right: 0;
-  bottom: 10px;
+  left: 10px;
+  top: 20px;
 
-  color: ${colors.white};
   border-radius: 50%;
-  background: ${colors.navy} url('./icons/arrow-drop-down.svg') no-repeat center;
-  background-size: 20px;
+  background: ${colors.white};
   box-shadow: ${colors.boxShadow};
 
   width: 40px;
   height: 40px;
+  
+  cursor: pointer;
+
+  .book-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid ${colors.lightGrey};
+    border-radius: 4px;
+
+    width: 150px;
+    z-index: 5;
+    button {
+      text-align: start;
+      background: ${colors.white};
+      border: none;
+      
+      height: 28px;
+      cursor: pointer;
+
+      :hover {
+        background: ${colors.paleGrey};
+      }
+    }
+  }
 `;

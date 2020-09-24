@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import BookMenu from './BookMenu';
 
 import { colors } from '../styles/Theme';
 
-const BookListDetail = ({ book, updateBookShelf }) => {
-  const { title, subtitle, authors, shelf, imageLinks, previewLink, categories, description } = book;
+const BookListDetail = ({ book, setBooks, books }) => {
+  const { title, subtitle, authors, imageLinks, previewLink, categories, description } = book;
   const [ truncateDescription, setTruncateDescription ] = useState(description);
 
   // Default image for book-cover
@@ -39,16 +38,8 @@ const BookListDetail = ({ book, updateBookShelf }) => {
         {categories && <div className="category">{categories}</div>}
         {description !== undefined && <p className="description">{truncateDescription}</p>}
       </div>
-  
-      <BookMenu updateBookShelf={updateBookShelf} value={shelf} book={book} />
     </Styles>
   );
-};
-
-// Add prop-types
-BookListDetail.propTypes = {
-  book: PropTypes.object.isRequired,
-  updateBookShelf: PropTypes.func.isRequired,
 };
 
 export default BookListDetail;
@@ -59,7 +50,7 @@ const Styles = styled.div`
 
   width: 500px;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 20px 10px;
 
   :hover {
     box-shadow: ${colors.boxShadow};
@@ -68,6 +59,7 @@ const Styles = styled.div`
 
   img {
     margin-right: 20px;
+    z-index: -1;
   }
 
   a {

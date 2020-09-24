@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // components
@@ -58,8 +57,7 @@ const Styles = styled.div`
     width: 55px;
     height: 55px;
     outline: 0;
-    z-index: 1;
-    
+
     svg {
       width: 35px;
       height: 35px;

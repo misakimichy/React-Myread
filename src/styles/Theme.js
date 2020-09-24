@@ -5,7 +5,7 @@ export const colors = {
   navy: '#2b4162',
   brown: '#8f754f',
   lightBrown: '#d7b377',
-  white: '#f5f0f6',
+  white: '#ffffff',
 
   boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)'
 };
