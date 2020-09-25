@@ -43,6 +43,8 @@ export default BookList;
 const Styles = styled.div`
   position: relative;
 
+  padding: 0 40px;
+
   .search {
     position: fixed;
     right: 25px;
