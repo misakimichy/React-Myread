@@ -46,7 +46,7 @@ const Styles = styled.div`
   .search {
     position: fixed;
     right: 25px;
-    top: 10px;
+    top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;

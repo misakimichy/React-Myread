@@ -23,7 +23,7 @@ const SearchWindow = ({ books, searchBook, setBooks}) => {
   const renderSearchResult = () => {
     if (searchData) {
       return books.length === 0 ? (
-        <div>No results found</div>
+        <h4>No results found</h4>
       ) : (
         books.map(book => (
           <BookListDetail
@@ -50,7 +50,7 @@ const SearchWindow = ({ books, searchBook, setBooks}) => {
           onChange={e => handleQueryUpdate(e.target.value)}
         />
       </div>
-      <div className="books-container" style={{marginTop: '70px'}}>
+      <div className="result-container">
         {renderSearchResult()}
       </div>
     </Styles>
@@ -60,16 +60,19 @@ const SearchWindow = ({ books, searchBook, setBooks}) => {
 export default SearchWindow;
 
 const Styles = styled.div`
+  position: relative;
+
   .search-books-bar {
     position: fixed;
+    top: 0;
     display: flex;
     align-items: center;
-    top: 0;
-    left: 0;
 
     background: ${colors.navy};
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
+
     width: 100%;
+    z-index: 2;
 
     a {
       display: flex;
@@ -97,5 +100,14 @@ const Styles = styled.div`
         color: ${colors.navy};
       }
     }
+  }
+
+  .result-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding: 20px 60px;
+    margin-top: 80px;
   }
 `;

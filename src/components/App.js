@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
-import styled from 'styled-components';
 
 // components
 import BookList from './BookList';
@@ -40,7 +39,7 @@ const BooksApp = () => {
   };
 
   return (
-    <Styles>
+    <>
       <Route exact path="/">
         <BookList
           bookShelf={bookShelf}
@@ -55,12 +54,9 @@ const BooksApp = () => {
           setBooks={setBooks}
         />
       </Route>
-    </Styles>
+    </>
   );
 }
 
 export default BooksApp;
 
-const Styles = styled.div`
-  padding: 0 40px;
-`;
