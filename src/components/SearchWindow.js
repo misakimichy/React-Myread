@@ -25,12 +25,17 @@ const SearchWindow = ({ books, searchBook, setBooks}) => {
       return books.length === 0 ? (
         <div>No results found</div>
       ) : (
-        books.map(book => {
-          return <BookListDetail key={book.id} book={book} books={books} setBooks={setBooks} />;
-        })
+        books.map(book => (
+          <BookListDetail
+            key={book.id}
+            book={book}
+            books={books}
+            setBooks={setBooks}
+          />
+        ))
       );
     }
-  }
+  };
   
   return (
     <Styles>
@@ -40,7 +45,7 @@ const SearchWindow = ({ books, searchBook, setBooks}) => {
         </Link>
         <input
           type="text"
-          placeholder="Search by title or author"
+          placeholder="Search by title"
           value={searchData}
           onChange={e => handleQueryUpdate(e.target.value)}
         />
@@ -61,29 +66,36 @@ const Styles = styled.div`
     align-items: center;
     top: 0;
     left: 0;
+
+    background: ${colors.navy};
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
     width: 100%;
 
     a {
+      display: flex;
+      justify-content: center;
+
+      width: 5%;
       padding: 15px;
       svg {
         width: 20px;
         height: 20px;
-        fill: ${colors.navy};
+        fill: ${colors.white};
       }
     }
 
     input {
-      width: 100%;
       font-size: 1.25em;
+      color: ${colors.navy};
       border: none;
       outline: none;
+      
+      width: 100%;
+      padding: 20px 10px;
 
-      padding: 15px 10px;
-    }
-
-    .books-container {
-      margin-top: 57px;
+      ::placeholder {
+        color: ${colors.navy};
+      }
     }
   }
 `;

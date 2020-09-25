@@ -21,7 +21,11 @@ const BookListDetail = ({ book, setBooks, books }) => {
   
   return (
     <Styles>
-      <img src={imageLinks ? imageLinks.thumbnail : defaultImage} alt={`thumbnail of ${title}`}/>
+      <img
+        src={imageLinks ? imageLinks.thumbnail : defaultImage}
+        alt={`thumbnail of ${title}`}
+        style={{marginRight: '20px'}}
+      />
       <BookMenu
         book={book}
         setBooks={setBooks}
@@ -35,7 +39,7 @@ const BookListDetail = ({ book, setBooks, books }) => {
             {Array.isArray(authors) ? authors.join(', ') : ''}
           </div>
         </a>
-        {categories && <div className="category">{categories}</div>}
+        {categories && <div className="description">{categories}</div>}
         {description !== undefined && <p className="description">{truncateDescription}</p>}
       </div>
     </Styles>
@@ -50,16 +54,11 @@ const Styles = styled.div`
 
   width: 500px;
   margin-bottom: 20px;
-  padding: 20px 10px;
+  padding: 20px;
 
   :hover {
     box-shadow: ${colors.boxShadow};
     border-radius: 4px;
-  }
-
-  img {
-    margin-right: 20px;
-    z-index: -1;
   }
 
   a {
@@ -71,12 +70,11 @@ const Styles = styled.div`
 
     .book-authors {
       font-size: 0.9em;
-      color: ${colors.lightGrey};
+      color: ${colors.brown};
     }
   }
 
-  .category, .description {
-    display: inline-block;
+  .description {
     font-size: 14px;
   }
 

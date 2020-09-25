@@ -14,7 +14,7 @@ const BookList = ({ bookShelf, setBooks, books }) => {
   const read = bookShelf.filter(book => book.shelf === 'read');
 
   return (
-    <Styles className="list-books">
+    <Styles>
       <h1>My bookshelf</h1>
       <Link to="/search" className='search'>
         <AddIcon />
@@ -51,6 +51,7 @@ const Styles = styled.div`
     justify-content: center;
     align-items: center;
 
+    background: ${colors.navy};
     border-radius: 50%;
     box-shadow: ${colors.boxShadow};
 
@@ -62,7 +63,7 @@ const Styles = styled.div`
       width: 35px;
       height: 35px;
 
-      fill: ${colors.navy};
+      fill: ${colors.white};
 
       cursor: pointer;
     }

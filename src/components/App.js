@@ -39,31 +39,22 @@ const BooksApp = () => {
     });
   };
 
-  // Route path '/' for main page and '/search' for search window
-  // Pass props to a component rendered by React Router:
-  // https://tylermcginnis.com/react-router-pass-props-to-components/
   return (
     <Styles>
-      <Route exact
-        path="/"
-        render={() => (
-          <BookList
-            bookShelf={bookShelf}
-            setBooks={setBooks}
-            books={books}
-          />
-        )}
-      />
-      <Route
-        path="/search"
-        render={() => (
-          <SearchWindow
-            books={books}
-            searchBook={searchBook}
-            setBooks={setBooks}
-          />
-        )}
-      />
+      <Route exact path="/">
+        <BookList
+          bookShelf={bookShelf}
+          setBooks={setBooks}
+          books={books}
+        />
+      </Route>
+      <Route path="/search">
+        <SearchWindow
+          books={books}
+          searchBook={searchBook}
+          setBooks={setBooks}
+        />
+      </Route>
     </Styles>
   );
 }

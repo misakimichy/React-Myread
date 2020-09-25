@@ -4,7 +4,6 @@ export const colors = {
   paleGrey: '#dedede',
   navy: '#2b4162',
   brown: '#8f754f',
-  lightBrown: '#d7b377',
   white: '#ffffff',
 
   boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)'

@@ -27,17 +27,29 @@ const BookMenu = ({ book, setBooks, books }) => {
       <ArrowDropdown />
       {isOpen && 
         <div className="book-menu-wrapper">
-          <button value="currentlyReading" onClick={(e) => updateBookShelf(book, e.target.value)}>
+          <button
+            value="currentlyReading"
+            onClick={(e) => updateBookShelf(book, e.target.value)}
+          >
             Currently Reading
           </button>
-          <button value="wantToRead" onClick={(e) => updateBookShelf(book, e.target.value)}>
+          <button
+            value="wantToRead"
+            onClick={(e) => updateBookShelf(book, e.target.value)}
+          >
             Want to Read
           </button>
-          <button value="read" onClick={(e) => updateBookShelf(book, e.target.value)}>
+          <button
+            value="read"
+            onClick={(e) => updateBookShelf(book, e.target.value)}
+          >
             Read
           </button>
           {window.location.pathname === '/' &&
-            <button value="remove" onClick={(e) => updateBookShelf(book, e.target.value)}>
+            <button
+              value="remove"
+              onClick={(e) => updateBookShelf(book, e.target.value)}
+            >
               Remove
             </button>
           }
@@ -67,7 +79,6 @@ const Styles = styled.div`
     display: flex;
     flex-direction: column;
 
-    border: 1px solid ${colors.lightGrey};
     border-radius: 4px;
 
     width: 150px;
@@ -76,12 +87,14 @@ const Styles = styled.div`
       text-align: start;
       background: ${colors.white};
       border: none;
+      border-radius: 4px;
       
       height: 28px;
       cursor: pointer;
 
       :hover {
-        background: ${colors.paleGrey};
+        background: ${colors.navy};
+        color: ${colors.white};
       }
     }
   }

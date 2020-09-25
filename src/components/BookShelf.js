@@ -27,6 +27,5 @@ export default BookShelf;
 const Styles = styled.div`
   h2 {
     border-bottom: 1px solid ${colors.navy};
-    width: 95%;
   }
 `;

@@ -2,16 +2,11 @@ import { css } from 'styled-components';
 import { colors } from './Theme';
 
 export default css`
-  html,
-  body, {
-    height: 100%;
-  }
-
   body {
+    height: 100%;
     line-height: 1.5;
   }
 
-  body,
   .app {
     background: ${colors.white};
   }
@@ -22,16 +17,6 @@ export default css`
 
   p {
     color: ${colors.darkGrey};
-  }
-
-  /* search page */
-  button:active {
-    border: red;
-    outline: none;
-  }
-
-  .search-books-results {
-    padding: 80px 10px 20px;
   }
 
   /* books card styling */
