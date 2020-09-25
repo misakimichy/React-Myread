@@ -6,7 +6,7 @@ import App from './components/App';
 import GlobalStyles from './styles';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/react-my-read">
     <App />
     <GlobalStyles />
   </BrowserRouter>,
