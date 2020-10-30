@@ -5,9 +5,6 @@ import styled from 'styled-components';
 // components
 import BookListDetail from './BookListDetail';
 
-// icons
-import CloseIcon from '../icons/CloseIcon.js';
-
 // theme
 import { colors } from '../styles/Theme';
 
@@ -41,7 +38,7 @@ const SearchWindow = ({ books, searchBook, setBooks}) => {
     <Styles>
       <div className="search-books-bar">
         <Link to="/" className="close-search">
-          <CloseIcon />
+          x
         </Link>
         <input
           type="text"
@@ -78,13 +75,12 @@ const Styles = styled.div`
       display: flex;
       justify-content: center;
 
-      width: 5%;
+      color: white;
+      text-decoration: none;
+      font-size: 23px;
+
+      width: 7%;
       padding: 15px;
-      svg {
-        width: 20px;
-        height: 20px;
-        fill: ${colors.white};
-      }
     }
 
     input {
