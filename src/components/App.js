@@ -9,30 +9,31 @@ import SearchWindow from './SearchWindow';
 import * as BooksAPI from '../BooksAPI';
 
 const BooksApp = () => {
-  const [books, setBooks ] = useState([]);
+  const [books, setBooks] = useState([]);
   const [bookShelf, setBookShelf] = useState([]);
 
   // Add data from booksAPI
   const getBooks = () => {
-    BooksAPI.getAll().then((bookShelf) => {
+    BooksAPI.getAll().then(bookShelf => {
       setBookShelf(bookShelf);
     });
   };
 
-  if(bookShelf.length === 0) getBooks();
+  if (bookShelf.length === 0) getBooks();
 
-  const searchBook = (query) => {
-    BooksAPI.search(query).then((books) => {
+  const searchBook = query => {
+    BooksAPI.search(query).then(books => {
       if (!Array.isArray(books)) return setBooks([]);
 
-      books.map((book) => {
-        let thisBookInShelf = bookShelf.find((item) => item.id === book.id);
+      books.map(book => {
+        let thisBookInShelf = bookShelf.find(item => item.id === book.id);
         if (thisBookInShelf) {
           book.shelf = thisBookInShelf.shelf;
           return book;
         } else {
           book.shelf = 'none';
         }
+        return undefined;
       });
       setBooks(books);
     });
@@ -41,22 +42,13 @@ const BooksApp = () => {
   return (
     <>
       <Route exact path="/">
-        <BookList
-          bookShelf={bookShelf}
-          setBooks={setBooks}
-          books={books}
-        />
+        <BookList bookShelf={bookShelf} setBooks={setBooks} books={books} />
       </Route>
       <Route path="/search">
-        <SearchWindow
-          books={books}
-          searchBook={searchBook}
-          setBooks={setBooks}
-        />
+        <SearchWindow books={books} searchBook={searchBook} setBooks={setBooks} />
       </Route>
     </>
   );
-}
+};
 
 export default BooksApp;
-
