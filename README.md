@@ -11,9 +11,9 @@ This app let you create your own bookshelf.
 ## Installation
 
 1. Clone the GitHub repo:
-   `git clone https://github.com/misakimichy/react-my-read.git`
+   `git clone https://github.com/misakimichy/my-bookshelf.git`
 
-2. `cd react-my-read`
+2. `cd my-bookshelf`
 
 3. `npm install`
 
